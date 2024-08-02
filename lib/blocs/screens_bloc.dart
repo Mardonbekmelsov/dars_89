@@ -40,7 +40,7 @@ class ScreensBloc extends Bloc<ScreensEvent, ScreenState> {
     try {
       final service = DownloadPdfService();
       service.downloadPdfIsolate(
-          "https://github.com/Mardonbekmelsov/my-cv/blob/main/Mardonbek%20Melsov%20resume.pdf");
+          "https://api.ziyonet.uz/uploads/books/1036692/5c24c5b74a19b.pdf");
       emit(ScreenLoadedState());
     } catch (error) {
       emit(ScreenErrorState(error: error.toString()));

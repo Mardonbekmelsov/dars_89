@@ -8,9 +8,12 @@ import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 
 class DownloadPdfService extends ChangeNotifier {
-
   static Future<String> _getSavePath() async {
     Directory? savePath = await getApplicationDocumentsDirectory();
+
+    if (Platform.isAndroid) {
+      savePath = Directory("/storage/emulated/0/Download");
+    }
 
     final fullPath = "${savePath.path}/cv.pdf";
     return fullPath;
@@ -25,8 +28,7 @@ class DownloadPdfService extends ChangeNotifier {
         url,
         filePath,
         onReceiveProgress: (count, total) {
-          print(count);
-          print(total);
+          print(count / total * 100);
         },
       );
     } else {
